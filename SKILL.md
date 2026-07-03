@@ -5,7 +5,7 @@ description: DeFi intelligence agent for the Pharos ecosystem. Check token safet
 
 # Pharos DeFi Intelligence Agent
 
-An AI agent that helps you navigate DeFi on Pharos safely. Check if tokens are safe, find the best yields, analyze wallet risk, and batch-scan multiple tokens — all powered by on-chain consensus data from multi-agent reports.
+An AI agent that helps you navigate DeFi on Pharos safely. Check if tokens are safe, find the best yields, analyze wallet risk, and batch-scan multiple tokens — powered by on-chain consensus data from multi-agent reports AND real-time GoPlus Security API verification.
 
 ## Prerequisites
 
@@ -25,6 +25,7 @@ See `assets/networks.json` for RPC URLs, chain IDs, and explorer URLs.
 | "What are the best yields?" / "Find yields on Pharos" | Yield Scanning | `references/yield-scan.md` |
 | "Analyze wallet 0x..." / "Check this wallet" | Wallet Intelligence | `references/wallet-intel.md` |
 | "Scan these tokens" / "Batch check" | Batch Scanning | `references/batch-scan.md` |
+| "Verify with GoPlus" / "External security check" | GoPlus Security Scan | `references/goplus-scan.md` |
 | "Report token safety" / "Submit safety report" | Write Safety Report | `references/token-safety.md` § Writing Reports |
 | "Register yield protocol" / "Report yield data" | Write Yield Data | `references/yield-scan.md` § Writing Reports |
 
