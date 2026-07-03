@@ -1,0 +1,24 @@
+{
+  "atlantic_testnet": {
+    "name": "Pharos Atlantic Testnet",
+    "chainId": 688689,
+    "rpcUrl": "https://atlantic.dplabs-internal.com",
+    "explorerUrl": "https://atlantic.pharosscan.xyz",
+    "nativeToken": "PHAR",
+    "contracts": {
+      "TokenSafetyRegistry": "0xF11c856D021900f9c312e0e80913A7a0D6af40ED",
+      "YieldRegistry": "TBD"
+    }
+  },
+  "pacific_mainnet": {
+    "name": "Pharos Pacific Mainnet",
+    "chainId": "TBD",
+    "rpcUrl": "TBD",
+    "explorerUrl": "TBD",
+    "nativeToken": "PHAR",
+    "contracts": {
+      "TokenSafetyRegistry": "TBD",
+      "YieldRegistry": "TBD"
+    }
+  }
+}

@@ -1,0 +1,313 @@
+[
+  {
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "name": "score",
+        "type": "uint8"
+      },
+      {
+        "name": "isHoneypot",
+        "type": "bool"
+      },
+      {
+        "name": "isMintable",
+        "type": "bool"
+      },
+      {
+        "name": "buyTax",
+        "type": "uint8"
+      },
+      {
+        "name": "sellTax",
+        "type": "uint8"
+      },
+      {
+        "name": "holderCount",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateReport",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "tokens",
+        "type": "address[]"
+      }
+    ],
+    "name": "batchIsTokenSafe",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "isTokenSafe",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "getConsensus",
+    "outputs": [
+      {
+        "name": "avgScore",
+        "type": "uint8"
+      },
+      {
+        "name": "reportCount",
+        "type": "uint8"
+      },
+      {
+        "name": "consensusHoneypot",
+        "type": "bool"
+      },
+      {
+        "name": "avgBuyTax",
+        "type": "uint8"
+      },
+      {
+        "name": "avgSellTax",
+        "type": "uint8"
+      },
+      {
+        "name": "lastUpdated",
+        "type": "uint256"
+      },
+      {
+        "name": "isStale",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "name": "reporter",
+        "type": "address"
+      }
+    ],
+    "name": "getReport",
+    "outputs": [
+      {
+        "name": "score",
+        "type": "uint8"
+      },
+      {
+        "name": "isHoneypot",
+        "type": "bool"
+      },
+      {
+        "name": "isMintable",
+        "type": "bool"
+      },
+      {
+        "name": "buyTax",
+        "type": "uint8"
+      },
+      {
+        "name": "sellTax",
+        "type": "uint8"
+      },
+      {
+        "name": "holderCount",
+        "type": "uint256"
+      },
+      {
+        "name": "updatedAt",
+        "type": "uint256"
+      },
+      {
+        "name": "reporterAddr",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "getMultiReporterReports",
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple[]",
+        "components": [
+          {
+            "name": "score",
+            "type": "uint8"
+          },
+          {
+            "name": "isHoneypot",
+            "type": "bool"
+          },
+          {
+            "name": "isMintable",
+            "type": "bool"
+          },
+          {
+            "name": "buyTax",
+            "type": "uint8"
+          },
+          {
+            "name": "sellTax",
+            "type": "uint8"
+          },
+          {
+            "name": "holderCount",
+            "type": "uint256"
+          },
+          {
+            "name": "updatedAt",
+            "type": "uint256"
+          },
+          {
+            "name": "reporter",
+            "type": "address"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "getReporterCount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "reporter",
+        "type": "address"
+      }
+    ],
+    "name": "getReporterReputation",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "isConsensusStale",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "score",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "isSafe",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "reporter",
+        "type": "address"
+      }
+    ],
+    "name": "ReportUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "avgScore",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "reportCount",
+        "type": "uint8"
+      }
+    ],
+    "name": "ConsensusUpdated",
+    "type": "event"
+  }
+]

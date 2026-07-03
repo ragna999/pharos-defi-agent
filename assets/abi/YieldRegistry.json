@@ -1,0 +1,287 @@
+[
+  {
+    "inputs": [
+      {
+        "name": "protocolAddr",
+        "type": "address"
+      },
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "name": "contractAddr",
+        "type": "address"
+      }
+    ],
+    "name": "registerProtocol",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "protocol",
+        "type": "address"
+      },
+      {
+        "name": "pair",
+        "type": "string"
+      },
+      {
+        "name": "apy",
+        "type": "uint256"
+      },
+      {
+        "name": "tvlUsd",
+        "type": "uint256"
+      },
+      {
+        "name": "riskLevel",
+        "type": "uint8"
+      }
+    ],
+    "name": "reportYield",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "protocol",
+        "type": "address"
+      }
+    ],
+    "name": "getLatestYield",
+    "outputs": [
+      {
+        "name": "protocolAddr",
+        "type": "address"
+      },
+      {
+        "name": "pair",
+        "type": "string"
+      },
+      {
+        "name": "apy",
+        "type": "uint256"
+      },
+      {
+        "name": "tvlUsd",
+        "type": "uint256"
+      },
+      {
+        "name": "riskLevel",
+        "type": "uint8"
+      },
+      {
+        "name": "reportedAt",
+        "type": "uint256"
+      },
+      {
+        "name": "reporter",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "protocol",
+        "type": "address"
+      }
+    ],
+    "name": "getYieldHistory",
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple[]",
+        "components": [
+          {
+            "name": "protocol",
+            "type": "address"
+          },
+          {
+            "name": "pair",
+            "type": "string"
+          },
+          {
+            "name": "apy",
+            "type": "uint256"
+          },
+          {
+            "name": "tvlUsd",
+            "type": "uint256"
+          },
+          {
+            "name": "riskLevel",
+            "type": "uint8"
+          },
+          {
+            "name": "reportedAt",
+            "type": "uint256"
+          },
+          {
+            "name": "reporter",
+            "type": "address"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getProtocolCount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "protocolAddr",
+        "type": "address"
+      }
+    ],
+    "name": "getProtocol",
+    "outputs": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "name": "contractAddr",
+        "type": "address"
+      },
+      {
+        "name": "verified",
+        "type": "bool"
+      },
+      {
+        "name": "registeredAt",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllProtocols",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "protocol",
+        "type": "address"
+      }
+    ],
+    "name": "isYieldFresh",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "reporter",
+        "type": "address"
+      }
+    ],
+    "name": "getReporterReputation",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "protocol",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "apy",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "tvlUsd",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "riskLevel",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "reporter",
+        "type": "address"
+      }
+    ],
+    "name": "YieldUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "protocol",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "name": "category",
+        "type": "string"
+      }
+    ],
+    "name": "ProtocolRegistered",
+    "type": "event"
+  }
+]

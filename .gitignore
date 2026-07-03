@@ -1,0 +1,4 @@
+.git
+.hermes-tmp
+.hermes-tmp.*
+*.zip
