@@ -34,7 +34,7 @@ See `assets/networks.json` for RPC URLs, chain IDs, and explorer URLs.
 | Contract | Address | Purpose |
 |---|---|---|
 | TokenSafetyRegistry | `0xF11c856D021900f9c312e0e80913A7a0D6af40ED` | Multi-agent token safety consensus |
-| YieldRegistry | See `assets/networks.json` | DeFi yield data registry |
+| YieldRegistry | `0x6c65B773e1250D40e5902615FDd33d054C455ede` | DeFi yield data registry |
 
 ## Example Interactions
 

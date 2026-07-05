@@ -7,7 +7,7 @@
     "nativeToken": "PHAR",
     "contracts": {
       "TokenSafetyRegistry": "0xF11c856D021900f9c312e0e80913A7a0D6af40ED",
-      "YieldRegistry": "TBD"
+      "YieldRegistry": "0x6c65B773e1250D40e5902615FDd33d054C455ede"
     }
   },
   "pacific_mainnet": {
