@@ -102,9 +102,3 @@ The contract returns these specific error messages. Use them to give users clear
 | `insufficient funds` | Not enough PHAR for gas | Top up wallet with testnet PHAR |
 | Empty consensus data (all zeros) | No reports exist for this token | Suggest submitting a safety report first |
 | `isTokenSafe` returns false with no data | Default state — no reports | "This token hasn't been analyzed yet. No safety data available." |
-
-| Error | Cause | Fix |
-|---|---|---|
-| `Invalid token address` | Zero address passed | Verify token address |
-| `Invalid tax` | Tax > 100 | Check buyTax/sellTax values |
-| No consensus data | No reports exist | Suggest submitting a report first |

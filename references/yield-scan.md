@@ -119,9 +119,3 @@ cast send 0x6c65B773e1250D40e5902615FDd33d054C455ede   "reportYield(address,stri
 | `Invalid risk level` | riskLevel not 1-3 | Use 1, 2, or 3 |
 | Empty protocol list | No protocols registered | Suggest registering protocols |
 | ABI decode error with cast | Dynamic string returns | Use raw call: `cast call <addr> "function(address)" <param>` and decode manually |
-
-| Error | Cause | Fix |
-|---|---|---|
-| `Protocol not registered` | Address not in registry | Register protocol first |
-| `Invalid risk level` | riskLevel not 1-3 | Use 1, 2, or 3 |
-| Empty protocol list | No protocols registered | Suggest registering protocols |
