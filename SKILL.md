@@ -9,11 +9,19 @@ An AI agent that helps you navigate DeFi on Pharos safely. Check if tokens are s
 
 ## Network
 
-- **Chain:** Pharos Atlantic Testnet (Chain ID: 688689)
+**Pharos Pacific Mainnet (Chain ID: 1672)**
+- **RPC:** https://rpc.pharos.xyz
+- **Explorer:** https://www.pharosscan.xyz
+- **TokenSafetyRegistry:** 0xFaf78c0c15583b3Bf937425ce0e46F3eFDD9760C
+- **YieldRegistry:** 0x6184a0e6fAFb21062fd7Ba66B39DdEf083075140
+
+**Pharos Atlantic Testnet (Chain ID: 688689)**
 - **RPC:** https://atlantic.dplabs-internal.com
 - **Explorer:** https://atlantic.pharosscan.xyz
 - **TokenSafetyRegistry:** 0xF11c856D021900f9c312e0e80913A7a0D6af40ED
 - **YieldRegistry:** 0x6c65B773e1250D40e5902615FDd33d054C455ede
+
+**Default:** Use MAINNET unless the user explicitly asks for testnet.
 
 ## IMPORTANT — How to Get Data
 
@@ -24,7 +32,7 @@ You MUST query on-chain data LIVE by making HTTP POST requests to the Pharos RPC
 Use your HTTP/fetch tool to send a POST request to:
 
 ```
-URL: https://atlantic.dplabs-internal.com
+URL: https://rpc.pharos.xyz
 Method: POST
 Headers: Content-Type: application/json
 Body: {"jsonrpc":"2.0","method":"eth_call","params":[{"to":"<CONTRACT_ADDRESS>","data":"<CALL_DATA>"},"latest"],"id":1}
@@ -47,8 +55,8 @@ When user asks "Is token 0xABC safe?":
 
 1. **Make the RPC call:**
    ```
-   POST https://atlantic.dplabs-internal.com
-   Body: {"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0xF11c856D021900f9c312e0e80913A7a0D6af40ED","data":"0xe8f738e1<TOKEN_PADDED_TO_64_CHARS>"},"latest"],"id":1}
+   POST https://rpc.pharos.xyz
+   Body: {"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0xFaf78c0c15583b3Bf937425ce0e46F3eFDD9760C","data":"0xe8f738e1<TOKEN_PADDED_TO_64_CHARS>"},"latest"],"id":1}
    ```
 
 2. **Decode the result** (each field = 64 hex chars / 32 bytes):
@@ -84,16 +92,16 @@ When user asks "Best yields on Pharos?":
 
 1. **Get all protocols:**
    ```
-   POST https://atlantic.dplabs-internal.com
-   Body: {"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0x6c65B773e1250D40e5902615FDd33d054C455ede","data":"0x741c53eb"},"latest"],"id":1}
+   POST https://rpc.pharos.xyz
+   Body: {"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0x6184a0e6fAFb21062fd7Ba66B39DdEf083075140","data":"0x741c53eb"},"latest"],"id":1}
    ```
 
 2. **Decode protocol addresses** from the result (dynamic array of addresses)
 
 3. **Query ONLY the first 5 protocols** (to avoid timeouts). For each:
    ```
-   POST https://atlantic.dplabs-internal.com
-   Body: {"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0x6c65B773e1250D40e5902615FDd33d054C455ede","data":"0xc2f8608d<PROTOCOL_PADDED>"},"latest"],"id":1}
+   POST https://rpc.pharos.xyz
+   Body: {"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0x6184a0e6fAFb21062fd7Ba66B39DdEf083075140","data":"0xc2f8608d<PROTOCOL_PADDED>"},"latest"],"id":1}
    ```
 
 4. **Decode yield data:**
@@ -115,14 +123,14 @@ When user asks "Analyze wallet 0x...":
 
 1. **Get native balance:**
    ```
-   POST https://atlantic.dplabs-internal.com
+   POST https://rpc.pharos.xyz
    Body: {"jsonrpc":"2.0","method":"eth_getBalance","params":["<WALLET_ADDRESS>","latest"],"id":1}
    ```
    Result is in wei. Divide by 10^18 for PHAR.
 
 2. **Get transaction count:**
    ```
-   POST https://atlantic.dplabs-internal.com
+   POST https://rpc.pharos.xyz
    Body: {"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["<WALLET_ADDRESS>","latest"],"id":1}
    ```
 

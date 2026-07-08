@@ -12,13 +12,13 @@
   },
   "pacific_mainnet": {
     "name": "Pharos Pacific Mainnet",
-    "chainId": "TBD",
-    "rpcUrl": "TBD",
-    "explorerUrl": "TBD",
-    "nativeToken": "PHAR",
+    "chainId": 1672,
+    "rpcUrl": "https://rpc.pharos.xyz",
+    "explorerUrl": "https://www.pharosscan.xyz",
+    "nativeToken": "PROS",
     "contracts": {
-      "TokenSafetyRegistry": "TBD",
-      "YieldRegistry": "TBD"
+      "TokenSafetyRegistry": "0xFaf78c0c15583b3Bf937425ce0e46F3eFDD9760C",
+      "YieldRegistry": "0x6184a0e6fAFb21062fd7Ba66B39DdEf083075140"
     }
   }
 }
