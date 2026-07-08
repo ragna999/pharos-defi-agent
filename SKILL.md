@@ -111,6 +111,8 @@ When user asks "Best yields on Pharos?":
 
 When user asks "Analyze wallet 0x...":
 
+**Keep it simple — only 2 RPC calls max to avoid timeouts.**
+
 1. **Get native balance:**
    ```
    POST https://atlantic.dplabs-internal.com
@@ -124,15 +126,25 @@ When user asks "Analyze wallet 0x...":
    Body: {"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["<WALLET_ADDRESS>","latest"],"id":1}
    ```
 
-3. **Check known token balances** (balanceOf selector: `0x70a08231`):
+3. **Determine activity level:**
+   - > 100 txns → HIGH
+   - 10-100 txns → MEDIUM
+   - 1-10 txns → LOW
+   - 0 txns → DORMANT
+
+4. **Present wallet report:**
    ```
-   POST https://atlantic.dplabs-internal.com
-   Body: {"jsonrpc":"2.0","method":"eth_call","params":[{"to":"<TOKEN_ADDRESS>","data":"0x70a08231<WALLET_PADDED>"},"latest"],"id":1}
+   Wallet: <ADDRESS>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PHAR Balance: <balance> PHAR
+   Transactions: <count>
+   Activity:     HIGH / MEDIUM / LOW / DORMANT
+
+   Explorer: https://atlantic.pharosscan.xyz/address/<ADDRESS>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    ```
 
-4. **Cross-reference each token with safety data** (getConsensus)
-
-5. **Present wallet report**
+**IMPORTANT:** Do NOT query individual token balances — it takes too many calls. Just report the native balance and activity level. The user can check specific tokens via the token safety check.
 
 ## Known Tokens
 
