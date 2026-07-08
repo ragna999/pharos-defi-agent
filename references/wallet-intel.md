@@ -14,10 +14,17 @@ Analyze a wallet address on Pharos to understand its holdings, transaction patte
 
 **Intent:** "Check balance of 0xABC" / "How much PHAR does 0xABC have?"
 
+**Using the bundled script:**
 ```bash
-cast balance <WALLET_ADDRESS>   --rpc-url https://atlantic.dplabs-internal.com
+python3 scripts/rpc_helper.py wallet <WALLET_ADDRESS>
 ```
 
+**Raw JSON-RPC:**
+```bash
+curl -s -X POST https://atlantic.dplabs-internal.com \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_getBalance","params":["<WALLET_ADDRESS>","latest"],"id":1}'
+```
 **Returns:** Balance in wei (divide by 10^18 for PHAR)
 
 ## Query: Get ERC20 Token Balance
@@ -25,33 +32,37 @@ cast balance <WALLET_ADDRESS>   --rpc-url https://atlantic.dplabs-internal.com
 **Intent:** "Check token balance for 0xABC"
 
 ```bash
-cast call <TOKEN_ADDRESS>   "balanceOf(address)(uint256)"   <WALLET_ADDRESS>   --rpc-url https://atlantic.dplabs-internal.com
+curl -s -X POST https://atlantic.dplabs-internal.com \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"<TOKEN_ADDRESS>","data":"0x70a08231<WALLET_ADDRESS_PADDED>"},"latest"],"id":1}'
 ```
-
-**Returns:** Token balance (divide by 10^decimals for human-readable)
-
 ## Query: Get Transaction Count (Activity Level)
 
 ```bash
-cast tx-count <WALLET_ADDRESS>   --rpc-url https://atlantic.dplabs-internal.com
+curl -s -X POST https://atlantic.dplabs-internal.com \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["<WALLET_ADDRESS>","latest"],"id":1}'
 ```
-
 **Returns:** Number of transactions sent from this address
 
 ## Query: Get Token Info
 
 ```bash
-# Token name
-cast call <TOKEN_ADDRESS> "name()(string)" --rpc-url https://atlantic.dplabs-internal.com
+# Token name (0x06fdde03)
+curl -s -X POST https://atlantic.dplabs-internal.com -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"<TOKEN_ADDRESS>","data":"0x06fdde03"},"latest"],"id":1}'
 
-# Token symbol
-cast call <TOKEN_ADDRESS> "symbol()(string)" --rpc-url https://atlantic.dplabs-internal.com
+# Token symbol (0x95d89b41)
+curl -s -X POST https://atlantic.dplabs-internal.com -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"<TOKEN_ADDRESS>","data":"0x95d89b41"},"latest"],"id":1}'
 
-# Token decimals
-cast call <TOKEN_ADDRESS> "decimals()(uint8)" --rpc-url https://atlantic.dplabs-internal.com
+# Token decimals (0x313ce567)
+curl -s -X POST https://atlantic.dplabs-internal.com -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"<TOKEN_ADDRESS>","data":"0x313ce567"},"latest"],"id":1}'
 
-# Total supply
-cast call <TOKEN_ADDRESS> "totalSupply()(uint256)" --rpc-url https://atlantic.dplabs-internal.com
+# Total supply (0x18160ddd)
+curl -s -X POST https://atlantic.dplabs-internal.com -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"<TOKEN_ADDRESS>","data":"0x18160ddd"},"latest"],"id":1}'
 ```
 
 ## Cross-Reference with Safety Data
@@ -59,11 +70,13 @@ cast call <TOKEN_ADDRESS> "totalSupply()(uint256)" --rpc-url https://atlantic.dp
 For each token in the wallet, check safety:
 
 ```bash
-cast call 0xF11c856D021900f9c312e0e80913A7a0D6af40ED   "getConsensus(address)(uint8,uint8,bool,uint8,uint8,uint256,bool)"   <TOKEN_ADDRESS>   --rpc-url https://atlantic.dplabs-internal.com
+python3 scripts/rpc_helper.py safety <TOKEN_ADDRESS>
+
+# Or raw:
+curl -s -X POST https://atlantic.dplabs-internal.com \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0xF11c856D021900f9c312e0e80913A7a0D6af40ED","data":"0xe8f738e1<TOKEN_ADDRESS_PADDED>"},"latest"],"id":1}'
 ```
-
-## Response Format
-
 ```
 Wallet Intelligence Report: <WALLET_ADDRESS>
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

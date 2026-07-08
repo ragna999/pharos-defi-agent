@@ -14,22 +14,27 @@ Find and compare DeFi yield opportunities on the Pharos ecosystem. Query the on-
 
 **Intent:** "What yields are available?" / "List all protocols"
 
+**Option A — Using the bundled script:**
 ```bash
-cast call 0x6c65B773e1250D40e5902615FDd33d054C455ede   "getAllProtocols()(address[])"   --rpc-url https://atlantic.dplabs-internal.com
+python3 scripts/rpc_helper.py yields
 ```
 
-**Returns:** Array of registered protocol addresses
+**Option B — Raw JSON-RPC:**
+```bash
+curl -s -X POST https://atlantic.dplabs-internal.com \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0x6c65B773e1250D40e5902615FDd33d054C455ede","data":"0x741c53eb"},"latest"],"id":1}'
+```
 
 ## Query: Get Protocol Info
 
 **Intent:** "Tell me about protocol 0xABC"
 
 ```bash
-cast call 0x6c65B773e1250D40e5902615FDd33d054C455ede   "getProtocol(address)(string,string,address,bool,uint256)"   <PROTOCOL_ADDRESS>   --rpc-url https://atlantic.dplabs-internal.com
+curl -s -X POST https://atlantic.dplabs-internal.com \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0x6c65B773e1250D40e5902615FDd33d054C455ede","data":"0x21027dc5<PROTOCOL_ADDRESS_PADDED>"},"latest"],"id":1}'
 ```
-
-**Returns:** `(name, category, contractAddr, verified, registeredAt)`
-
 **Categories:** `lending`, `dex`, `staking`, `yield`
 
 ## Query: Get Latest Yield
@@ -37,11 +42,12 @@ cast call 0x6c65B773e1250D40e5902615FDd33d054C455ede   "getProtocol(address)(str
 **Intent:** "What's the APY for protocol 0xABC?" / "Get yield for 0xABC"
 
 ```bash
-cast call 0x6c65B773e1250D40e5902615FDd33d054C455ede   "getLatestYield(address)(address,string,uint256,uint256,uint8,uint256,address)"   <PROTOCOL_ADDRESS>   --rpc-url https://atlantic.dplabs-internal.com
+curl -s -X POST https://atlantic.dplabs-internal.com \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0x6c65B773e1250D40e5902615FDd33d054C455ede","data":"0xc2f8608d<PROTOCOL_ADDRESS_PADDED>"},"latest"],"id":1}'
 ```
 
-**Returns:** `(protocol, pair, apy, tvlUsd, riskLevel, reportedAt, reporter)`
-
+**Note:** APY is in basis points (100 = 1%, 5000 = 50%)
 **Note:** APY is in basis points (100 = 1%, 5000 = 50%)
 
 ## Query: Check Yield Freshness

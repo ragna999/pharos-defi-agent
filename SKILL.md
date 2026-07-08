@@ -9,13 +9,25 @@ An AI agent that helps you navigate DeFi on Pharos safely. Check if tokens are s
 
 ## Prerequisites
 
-- Foundry installed (`cast` and `forge` available)
-- `$PRIVATE_KEY` environment variable set (never hardcode)
-- Pharos Atlantic Testnet RPC accessible
+- Python 3.x available (`python3` command)
+- Pharos Atlantic Testnet RPC accessible (no API keys needed)
+- For write operations: `$PRIVATE_KEY` environment variable set (never hardcode)
 
 ## Network Configuration
 
 See `assets/networks.json` for RPC URLs, chain IDs, and explorer URLs.
+
+## Quick Start
+
+All queries go through the bundled RPC helper script — no Foundry or external tools needed:
+
+```bash
+python3 scripts/rpc_helper.py safety <TOKEN_ADDRESS>
+python3 scripts/rpc_helper.py yields
+python3 scripts/rpc_helper.py wallet <WALLET_ADDRESS>
+python3 scripts/rpc_helper.py batch <TOKEN1>,<TOKEN2>,<TOKEN3>
+python3 scripts/rpc_helper.py goplus <TOKEN_ADDRESS> [CHAIN_ID]
+```
 
 ## Capability Index
 
@@ -72,7 +84,7 @@ Agent: [Confirms parameters, asks for gas confirmation, submits updateReport tx]
 
 | Error | Cause | Fix |
 |---|---|---|
-| `contract not deployed` | Wrong network or address | Verify chain ID and contract address |
+| `contract not deployed` | Wrong network or address | Verify chain ID (688689) and contract address |
 | `execution reverted` | Invalid parameters or contract state | Check input values, verify token address |
 | `nonce too low` | Transaction already mined | Wait and retry |
 | `insufficient funds` | Not enough PHAR for gas | Top up wallet with testnet PHAR |

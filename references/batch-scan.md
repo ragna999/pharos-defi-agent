@@ -14,23 +14,30 @@ Scan multiple tokens at once for safety using the TokenSafetyRegistry's batch fu
 
 **Intent:** "Scan these tokens" / "Check multiple tokens at once" / "Which of these are safe?"
 
+**Using the bundled script:**
 ```bash
-cast call 0xF11c856D021900f9c312e0e80913A7a0D6af40ED   "batchIsTokenSafe(address[])(bool[])"   "[<TOKEN_1>,<TOKEN_2>,<TOKEN_3>]"   --rpc-url https://atlantic.dplabs-internal.com
+python3 scripts/rpc_helper.py batch <TOKEN_1>,<TOKEN_2>,<TOKEN_3>
 ```
 
-**Returns:** Array of booleans (true = safe, false = unsafe/no data)
+**Raw JSON-RPC:**
+```bash
+# For each token, call getConsensus individually:
+curl -s -X POST https://atlantic.dplabs-internal.com \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0xF11c856D021900f9c312e0e80913A7a0D6af40ED","data":"0xe8f738e1<TOKEN_ADDRESS_PADDED>"},"latest"],"id":1}'
+```
 
+**Note:** The `batchIsTokenSafe` function (selector `0xbadb7021`) requires ABI encoding of an address array. Use the bundled script for convenience.
 ## Query: Get Detailed Reports for Multiple Tokens
 
 For each token in the batch, get full consensus:
 
 ```bash
 # For each token:
-cast call 0xF11c856D021900f9c312e0e80913A7a0D6af40ED   "getConsensus(address)(uint8,uint8,bool,uint8,uint8,uint256,bool)"   <TOKEN_ADDRESS>   --rpc-url https://atlantic.dplabs-internal.com
+curl -s -X POST https://atlantic.dplabs-internal.com \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0xF11c856D021900f9c312e0e80913A7a0D6af40ED","data":"0xe8f738e1<TOKEN_ADDRESS_PADDED>"},"latest"],"id":1}'
 ```
-
-## Query: Get Multi-Reporter Reports
-
 **Intent:** "Show all reports for token 0xABC"
 
 ```bash
