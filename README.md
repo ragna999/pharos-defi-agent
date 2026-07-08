@@ -1,6 +1,6 @@
 # Pharos DeFi Intelligence Agent
 
-> AI-powered DeFi safety and yield analysis for the Pharos ecosystem — built for Agent Carnival Phase 2.
+> Pharos Sentinel — on-chain DeFi safety and yield intelligence for the Pharos ecosystem. Multi-agent consensus, live data, dual-network support. Built for Agent Carnival Phase 2.
 
 ## What It Does
 
@@ -41,7 +41,19 @@ pharos-defi-agent/
 └── RUNTIME-CONFIG.md           ← Execution limits & timing
 ```
 
-## On-Chain Contracts (Pharos Atlantic Testnet — Chain ID: 688689)
+## On-Chain Contracts
+
+### Pharos Pacific Mainnet (Chain ID: 1672)
+
+| Contract | Address | Version |
+|---|---|---|
+| TokenSafetyRegistry | `0xFaf78c0c15583b3Bf937425ce0e46F3eFDD9760C` | v0.2.0 (multi-agent consensus) |
+| YieldRegistry | `0x6184a0e6fAFb21062fd7Ba66B39DdEf083075140` | v0.2.0 (yield reporting) |
+
+**RPC:** `https://rpc.pharos.xyz`
+**Explorer:** `https://www.pharosscan.xyz`
+
+### Pharos Atlantic Testnet (Chain ID: 688689)
 
 | Contract | Address | Version |
 |---|---|---|
@@ -83,10 +95,13 @@ This agent builds on our Phase 1 winning submission:
 
 ## Submission
 
+- **Agent Name:** Pharos Sentinel
 - **Platform:** AnvitaFlow Developer Console (https://flow.anvita.xyz/service-agents)
 - **Upload opens:** July 8, 2026 — 7:00 PM HKT
 - **Deadline:** July 10, 2026 — 6:00 PM HKT
 - **Requirements:** GitHub repo, video tutorial, skill package (.zip)
+- **Networks:** Mainnet (default) + Testnet
+- **Tests:** 9/9 pass on live chain data
 
 ## License
 
