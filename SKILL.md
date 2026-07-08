@@ -90,20 +90,22 @@ When user asks "Best yields on Pharos?":
 
 2. **Decode protocol addresses** from the result (dynamic array of addresses)
 
-3. **For each protocol, get yield data:**
+3. **Query ONLY the first 5 protocols** (to avoid timeouts). For each:
    ```
    POST https://atlantic.dplabs-internal.com
    Body: {"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0x6c65B773e1250D40e5902615FDd33d054C455ede","data":"0xc2f8608d<PROTOCOL_PADDED>"},"latest"],"id":1}
    ```
 
 4. **Decode yield data:**
-   - protocol address
+   - protocol address (first 32 bytes)
    - pair (dynamic string)
-   - apy (in basis points: 100 = 1%, 5000 = 50%)
+   - apy (basis points: 100 = 1%, 5000 = 50%)
    - tvlUsd
    - riskLevel (1=LOW, 2=MEDIUM, 3=HIGH)
 
 5. **Sort by APY descending, present as ranked table**
+
+**IMPORTANT:** If querying takes too long, present what you have. Better to show partial results than timeout.
 
 ## Step-by-Step: Wallet Analysis
 
